@@ -36,9 +36,28 @@ const MORSE_TABLE = {
     '----.':  '9',
     '-----':  '0',
 };
-
 function decode(expr) {
-    // write your solution here
+  let result = []
+  let arr = []
+  let arrMorse = [] 
+  for (let i = 0; i < expr.length; i += 10) {
+    arr.push(expr.slice(i, i + 10))
+    }
+    arr.map(num => {
+      sign = ('')
+      for (let i = 9; i > 0; i -= 2) {
+        if (num[i-1] + num[i] == '11' ) {sign = '-' + sign}
+        if (num[i-1] + num[i] == '10' ) {sign = '.' + sign}
+        if (num[i-1] + num[i] == '00' ) {sign = '' + sign}
+      }
+      arrMorse.push(sign)
+    })
+    arrMorse.map(sign => {
+      if (!MORSE_TABLE[sign]) {result += ' '}
+      else 
+      result += MORSE_TABLE[sign]
+    })
+    return result
 }
 
 module.exports = {
